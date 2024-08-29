@@ -1,95 +1,94 @@
 /* App.css */
 
-/* Estilos globais */
+/* Estilizando o corpo da página */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
+  font-family: 'Arial', sans-serif;
+  background-color: #fff4ed;
   margin: 0;
   padding: 0;
 }
 
 /* Container principal */
-.container {
-  width: 80%;
-  margin: 20px auto;
+.App {
+  max-width: 800px;
+  margin: 40px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* Título principal */
-.title {
-  text-align: center;
+h1 {
   color: #333;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-/* Formulário de adicionar livro */
-.form-container {
+/* Estilizando a lista de livros */
+h2 {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Estilizando o formulário */
+form {
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
-.input-field {
-  margin-bottom: 10px;
+/* Campos de entrada de dados */
+input[type="text"],
+input[type="number"] {
   padding: 10px;
-  font-size: 16px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.submit-button {
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
+  border-radius: 4px;
   font-size: 16px;
-  border-radius: 5px;
+}
+
+/* Botão de adição de livro */
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
-.submit-button:hover {
-  background-color: #2980b9;
+/* Estilizando a lista de livros */
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-/* Lista de livros */
-.lista-container {
-  margin-top: 20px;
-}
-
-.livro-item {
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.livro-info {
-  font-size: 18px;
-  color: #555;
+li:last-child {
+  border-bottom: none;
 }
 
-.delete-button {
-  background-color: #e74c3c;
-  color: #fff;
+/* Botão de deletar livro */
+button {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
 }
 
-.delete-button:hover {
-  background-color: #c0392b;
+/* Alterando a cor do botão ao passar o mouse */
+button:hover {
+  background-color: #c82333;
 }

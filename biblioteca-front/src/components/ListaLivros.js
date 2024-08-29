@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../App.css'; // Importa o CSS no componente
+import '../App.css'; 
 
 function ListaLivros() {
   const [livros, setLivros] = useState([]);
