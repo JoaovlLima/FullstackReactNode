@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getTodos, createTodo, updateTodo, deleteTodo } from '@/lib/todoService';
+
 
 export default function TodosPage() {
   const [todos, setTodos] = useState([]);
@@ -12,29 +12,41 @@ export default function TodosPage() {
   }, []);
 
   const fetchTodos = async () => {
-    const data = await getTodos();
-    setTodos(data);
+    const response = await fetch('/api/todos');
+    const data = await response.json();
+    setTodos(data.data);
+    
   };
 
-  const handleAddTodo = async () => {
-    const newTodoData = { title: newTodo, completed: false };
-    const createdTodo = await createTodo(newTodoData);
-    setTodos([...todos, createdTodo]);
+
+  const addTodo = async () => {
+    const response = await fetch('/api/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: newTodo }),
+    });
+    const data = await response.json();
+    setTodos([...todos, data.data]);
     setNewTodo('');
   };
 
-  const handleDeleteTodo = async (id) => {
-    await deleteTodo(id);
+
+  const deleteTodo = async (id) => {
+    await fetch(`/api/todos/${id}`, {
+      method: 'DELETE',
+    });
     setTodos(todos.filter((todo) => todo._id !== id));
   };
 
-  const handleUpdateTodo = async (id) => {
-    const todoToUpdate = todos.find((todo) => todo._id === id);
-    const updatedTodo = await updateTodo(id, { completed: !todoToUpdate.completed });
-    setTodos(todos.map((todo) =>
-      todo._id === id ? updatedTodo : todo
-    ));
+  const updateTodo = async (id) => {
+    await fetch(`/api/todos/${id}`, {
+      method: 'PUT',
+    });
+    setTodos(todos.filter((todo) => todo._id !== id, todos.completed == true));
   };
+
 
   return (
     <div>
@@ -45,13 +57,13 @@ export default function TodosPage() {
         onChange={(e) => setNewTodo(e.target.value)}
         placeholder="Adicione uma nova tarefa"
       />
-      <button onClick={handleAddTodo}>Adicionar Tarefa</button>
+      <button onClick={addTodo}>Adicionar Tarefa</button>
       <ul>
         {todos.map((todo) => (
           <li key={todo._id}>
             {todo.title} - {todo.completed ? 'Concluída' : 'Pendente'}
-            <button onClick={() => handleDeleteTodo(todo._id)}>Excluir</button>
-            <button onClick={() => handleUpdateTodo(todo._id)}>
+            <button onClick={() => deleteTodo(todo._id)}>Excluir</button>
+            <button onClick={() => updateTodo(todo._id)}>
               {todo.completed ? 'Desmarcar' : 'Concluir'}
             </button>
           </li>

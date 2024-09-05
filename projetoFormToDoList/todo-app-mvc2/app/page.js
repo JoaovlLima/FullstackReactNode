@@ -43,7 +43,7 @@ export default function Home() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ completed: !status }),
+      body: JSON.stringify({ status: !status }),
     });
     await response.json();
     fetchTodos();
@@ -64,13 +64,8 @@ export default function Home() {
       <ul className={styles.todoList}>
         {todos.map((todo) => (
           <li key={todo._id} className={`${styles.todoItem} ${todo.completed ? styles.completed : ''}`}>
-            {todo.title} - {todo.completed ? 'Concluída' : 'Pendente'}
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => updateTodo(todo._id, todo.completed)}
-              className={styles.checkbox}
-            />
+            {todo.title} - {todo.status}
+            
             <button onClick={() => deleteTodo(todo._id)} className={styles.button}>
               Excluir
             </button>

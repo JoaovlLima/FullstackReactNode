@@ -7,7 +7,7 @@ export async function GET() {
     const todos = await getTodos();
     return NextResponse.json({ success: true, data: todos });
   } catch (error) {
-    return NextResponse.json({ success: false }, { status: 400 });
+      
   }
 }
 
