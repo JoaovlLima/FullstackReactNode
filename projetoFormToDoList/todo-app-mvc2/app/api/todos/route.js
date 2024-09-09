@@ -1,6 +1,6 @@
 import { getTodos, createTodo } from "@/controllers/TodoController";
 import { NextResponse } from "next/server";
-import { Suspense } from "react";
+
 
 export async function GET(){
     try{
